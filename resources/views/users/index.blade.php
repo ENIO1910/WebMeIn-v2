@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @vite(['resources/js/app.js', 'resources/js/delete.js'])
     <div class="container" >
         <table class="table table-striped">
             <thead>
@@ -24,8 +25,12 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->school}}</td>
                     <td>
-                        <button class="btn btn-danger btn-sm delete" data-id="">
+                        <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">
                             <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                        <button class="btn btn-primary btn-sm edit" >
+                            <i class="fa-solid fa-edit"></i>
                         </button>
                     </td>
                 </tr>
@@ -34,4 +39,11 @@
         </table>
         {{$users->links()}}
     </div>
+@endsection
+
+@section('javascript')
+    const deleteUrl = "{{url('users')}}/";
+@endsection
+@section('js-files')
+    @vite('resources/js/delete.js')
 @endsection
