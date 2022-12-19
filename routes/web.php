@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +15,17 @@ use App\Http\Controllers\UserController;
 */
 
 
-Auth::routes();
+Auth::routes([
+    'verify' => true
+]);
 
 Route::get('/users/list', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index')->middleware('auth');
-
 Route::delete('/users/{user}/delete', [\App\Http\Controllers\UserController::class, 'destroy'])->middleware('auth');
+
+Route::get('/courses/list', [\App\Http\Controllers\CourseController::class, 'index'])->name('courses.index')->middleware('auth');
+Route::get('/courses/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('courses.create')->middleware('auth');
+Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('courses.store')->middleware('auth');
+Route::delete('/courses/{course}/delete', [\App\Http\Controllers\CourseController::class, 'destroy'])->middleware('auth');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

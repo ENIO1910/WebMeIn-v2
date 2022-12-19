@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -59,7 +59,7 @@
                                     <a class="dropdown-item py-3" href="{{ route('users.index') }}">
                                         <i class="fa-solid fa-user"></i> Users
                                     </a>
-                                    <a class="dropdown-item py-3" href="#">
+                                    <a class="dropdown-item py-3" href="{{ route('courses.index') }}">
                                         <i class="fa-solid fa-table-list"></i> Courses
                                     </a>
 
@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-4">
             @yield('content')
         </main>
     </div>
