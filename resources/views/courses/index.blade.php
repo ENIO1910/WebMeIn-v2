@@ -32,7 +32,8 @@
                     <th scope="row">{{$key + 1}}</th>
                     <th >{{$course->id}}</th>
                     <td>{{$course->name}}</td>
-                    <td>{{$course->category}}</td>
+
+                    <td>{{$categories[$course->category_id]}}</td>
                     <td>{{$course->description}}</td>
                     <td>{{$course->difficulty}}</td>
                     <td> <img src="{{asset('storage/'.$course->image_path)}}" width="200px" height="150px" alt="image"> </td>

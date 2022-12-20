@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
+use App\Services\CourseService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -14,12 +16,16 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
+        $categories = Category::all();
+
         return view('courses.index', [
-            'courses' => Course::paginate(10)
+            'courses' => Course::paginate(10),
+            'categories' => CourseService::setCategoryName($categories)
         ]);
     }
 
@@ -30,7 +36,9 @@ class CourseController extends Controller
      */
     public function create():View
     {
-        return view("courses.create");
+        return view("courses.create", [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -42,6 +50,7 @@ class CourseController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $course = new Course($request->all());
+        $course->category_id = $request->category;
         $course->image_path = $request->file('image')->store('courses');
         $course->save();
         return redirect(route('courses.index'));
