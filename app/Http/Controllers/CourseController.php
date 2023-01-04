@@ -71,11 +71,14 @@ class CourseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function edit(Course $course)
+    public function edit(Course $course): View
     {
-        //
+        return view("courses.edit", [
+            'categories' => Category::all(),
+            'course' => $course
+        ]);
     }
 
     /**
@@ -83,18 +86,20 @@ class CourseController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Course $course): RedirectResponse
     {
-        //
+        $course->fill($request->all());
+        $course->save();
+        return redirect(route('courses.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @param  $course
+     * @return JsonResponse
      */
     public function destroy(Course $course): JsonResponse
     {

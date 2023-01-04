@@ -26,6 +26,8 @@ Route::get('/courses/list', [\App\Http\Controllers\CourseController::class, 'ind
 Route::get('/courses/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('courses.create')->middleware('auth');
 Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('courses.store')->middleware('auth');
 Route::delete('/courses/{course}/delete', [\App\Http\Controllers\CourseController::class, 'destroy'])->middleware('auth');
+Route::get('/courses/edit/{course}', [\App\Http\Controllers\CourseController::class, 'edit'])->name('courses.edit')->middleware('auth');
+Route::post('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'update'])->name('courses.update')->middleware('auth');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

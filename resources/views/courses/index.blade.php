@@ -41,10 +41,11 @@
                         <button class="btn btn-danger btn-sm delete" data-id="{{$course->id}}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-
-                        <button class="btn btn-primary btn-sm edit" >
-                            <i class="fa-solid fa-edit"></i>
-                        </button>
+                        <a href="{{route('courses.edit', $course->id)}}">
+                            <button class="btn btn-primary btn-sm edit" >
+                                <i class="fa-solid fa-edit"></i>
+                            </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
