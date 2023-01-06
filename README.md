@@ -6,10 +6,27 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+<div align="center">
+    <h2>WebMeIn</h2>
+    <img style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(33deg) brightness(113%) contrast(102%)" src="public/assets/img/LOGO.svg"/>
+</div>
+
 
 ## How configure
 - configure .env
 - configure v-hosts
+### Commands in repo directory
+- composer install
+- npm install 
+- npm install vite
+- php artisan storage:link
+### Database
+- php artisan migrate
+- create in database in table categories category like (bootstrap, laravel, vue, ...)
+
+## About WebMeIn
+WebMeIn was created in order to develop competences by students of secondary schools, and above all of technical schools.</br>
+The application aims to collect various types of web technology courses that will support high school students, especially technical schools. The application will mainly be created by a community that will be able to create new content and edit existing content !
 
 ## About Laravel
 
