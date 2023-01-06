@@ -111,7 +111,7 @@ class CourseController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Wystąpił błąd!'
+                'message' => 'Aby usunąć kurs usuń lekcje z nim powiązane!'
             ])->setStatusCode(500);
         }
 
