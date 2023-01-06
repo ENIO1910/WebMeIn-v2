@@ -5,11 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add Course') }}</div>
-
+                <div class="card-header">{{ __('Add Lesson') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('courses.store')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('courses.lessons.store')}}" enctype="multipart/form-data">
                         @csrf
+                        <div class="row mb-3">
+
+                            <input id="course_id" type="number" name="course_id" style="display:none" value="{{$course->id}}">
+
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="number" type="number" min="1" step="1" class="form-control @error('number') is-invalid @enderror" name="number" value="{{ old('name') }}" required autofocus>
+
+                                @error('number')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -19,24 +34,6 @@
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Category') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="category" value="{{ old('category') }}" class="form-control @error('category') is-invalid @enderror" name="category"  required >
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}"> {{$category->name}} </option>
-                                    @endforeach
-
-                                </select>
-                                @error('category')
-                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -57,25 +54,12 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="difficulty" class="col-md-4 col-form-label text-md-end">{{ __('Difficulty') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="difficulty" type="number" min="1" max="100" class="form-control @error('difficulty') is-invalid @enderror" placeholder="Podaj wartość od 0 do 100" name="difficulty" value="{{ old('difficulty') }}" required>
-
-                                @error('difficulty')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Image') }}</label>
+                            <label for="files" class="col-md-4 col-form-label text-md-end">{{ __('Files') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control" name="image" >
+                                <input id="files" type="file" class="form-control" name="files" >
                             </div>
                         </div>
 

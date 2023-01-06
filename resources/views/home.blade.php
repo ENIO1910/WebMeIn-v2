@@ -47,6 +47,57 @@
             </div>
         </div>
         {{$courses->links()}}
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Bootstrap - Lekcje-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Lekcje</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- % ukończenia kursu -->
+                                    <div style="width: 50%;" class="mx-auto">
+                                        <label><b>Stopień ukończenia kursu:</b></label>
+                                        <h3>%</h3>
+                                        <div class="meter animate">
+                                            <span style="width:100%"><span></span></span>
+                                        </div>
+                                        <!-- DODAĆ VALUE ODPOWIEDNIE [(WYNIK ZALICZONYCH / LESSONS) * 100%]   -->
+                                    </div>
+
+                                    <!-- Kurs - LEKCJE-->
+
+                                    <div class="list list-inline">
+                                            <a href="#" class="link">
+                                                <div class="d-flex list-lessons p-3 my-3">
+                                                <span class="mr-auto"><i class="
+                                                fa-regular "></i></span>
+                                                    <div class="mx-auto my-auto h6">name</div>
+                                                </div>
+                                            </a>
+                                    </div>
+                                    <button class="btn btn-primary my-3" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        <span>Zamknij</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- About Section-->
     <section class="page-section bg-primary text-white mb-0 shadow-lg" id="about">

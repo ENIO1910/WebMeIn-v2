@@ -19,9 +19,17 @@ Auth::routes([
     'verify' => true
 ]);
 
+/**
+ * Użytkownicy
+ */
 Route::get('/users/list', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index')->middleware('auth');
 Route::delete('/users/{user}/delete', [\App\Http\Controllers\UserController::class, 'destroy'])->middleware('auth');
+Route::get('/users/edit/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit')->middleware('auth');
+Route::post('/users/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update')->middleware('auth');
 
+/**
+ * Kursy
+ */
 Route::get('/courses/list', [\App\Http\Controllers\CourseController::class, 'index'])->name('courses.index')->middleware('auth');
 Route::get('/courses/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('courses.create')->middleware('auth');
 Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('courses.store')->middleware('auth');
@@ -29,5 +37,16 @@ Route::delete('/courses/{course}/delete', [\App\Http\Controllers\CourseControlle
 Route::get('/courses/edit/{course}', [\App\Http\Controllers\CourseController::class, 'edit'])->name('courses.edit')->middleware('auth');
 Route::post('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'update'])->name('courses.update')->middleware('auth');
 
+/**
+ * Lekcje
+ */
+Route::get('/courses/lessons/index/{course}', [\App\Http\Controllers\LessonController::class, 'index'])->name('courses.lessons.index')->middleware('auth');
+Route::get('/courses/lessons/{course}/create', [\App\Http\Controllers\LessonController::class, 'create'])->name('courses.lessons.create')->middleware('auth');
+Route::post('/lessons', [\App\Http\Controllers\LessonController::class, 'store'])->name('courses.lessons.store')->middleware('auth');
+Route::delete('/lessons/{course}/delete', [\App\Http\Controllers\LessonController::class, 'destroy'])->middleware('auth');
+
+/**
+ * Home
+ */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

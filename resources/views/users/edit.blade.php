@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Edit Course') }}</div>
+                <div class="card-header">{{ __('Edit User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{route('courses.update', $course->id)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('users.update', $user->id)}}">
                         @csrf
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $course->name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -26,16 +26,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Category') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Surname') }}</label>
 
                             <div class="col-md-6">
-                                <select id="category" value="{{ $course->category_id }}" class="form-control @error('category') is-invalid @enderror" name="category"  required >
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}"> {{$category->name}} </option>
-                                    @endforeach
+                                <input id="surname" type="text" class="form-control @error('name') is-invalid @enderror" name="surname" value="{{ $user->surname }}" required autocomplete="name" autofocus>
 
-                                </select>
-                                @error('category')
+                                @error('surname')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -44,26 +40,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $course->description }}" required autocomplete="email">{{$course->description}}</textarea>
+                                <input id="email" type="email" class="form-control @error('name') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="name" autofocus>
 
-                                @error('description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="difficulty" class="col-md-4 col-form-label text-md-end">{{ __('Difficulty') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="difficulty" type="number" min="1" max="100" class="form-control @error('difficulty') is-invalid @enderror" placeholder="Podaj wartość od 0 do 100" name="difficulty" value="{{ $course->difficulty }}" required>
-
-                                @error('difficulty')
+                                @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -72,10 +54,16 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Image') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('School') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" min="1" max="100" class="form-control" name="image" value="{{$course->image_path}}" >
+                                <input id="school" type="text" class="form-control @error('name') is-invalid @enderror" name="school" value="{{ $user->school }}" required autocomplete="name" autofocus>
+
+                                @error('school')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

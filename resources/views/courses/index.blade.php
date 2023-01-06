@@ -41,9 +41,16 @@
                         <button class="btn btn-danger btn-sm delete" data-id="{{$course->id}}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <a href="{{route('courses.edit', $course->id)}}">
-                            <button class="btn btn-primary btn-sm edit" >
+
+                        <a class="text-decoration-none" href="{{route('courses.edit', $course->id)}}">
+                            <button title="Edycja" class="btn btn-primary btn-sm edit addMore" >
                                 <i class="fa-solid fa-edit"></i>
+                            </button>
+                        </a>
+
+                        <a class="text-decoration-none" href="{{route('courses.lessons.index', $course->id)}}">
+                            <button title="Lekcje" class="btn btn-success btn-sm addMore" >
+                                <i class="fa-sharp fa-solid fa-list"></i>
                             </button>
                         </a>
                     </td>

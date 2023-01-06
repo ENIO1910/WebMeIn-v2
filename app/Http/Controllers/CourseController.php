@@ -17,7 +17,7 @@ class CourseController extends Controller
      * Display a listing of the resource.
      *
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -44,7 +44,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -59,7 +59,7 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  Course  $course
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course)
@@ -70,7 +70,7 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  Course  $course
      * @return View
      */
     public function edit(Course $course): View
@@ -83,14 +83,14 @@ class CourseController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param Request $request
+     * @param Course $course
      * @return RedirectResponse
      */
     public function update(Request $request, Course $course): RedirectResponse
     {
         $course->fill($request->all());
+        $course->category_id = $request->category;
         $course->save();
         return redirect(route('courses.index'));
     }
@@ -98,7 +98,7 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $course
+     * @param  Course $course
      * @return JsonResponse
      */
     public function destroy(Course $course): JsonResponse
