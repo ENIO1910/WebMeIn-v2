@@ -35,17 +35,17 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="withoutScore" value="true">
                 <div>
-                    @if($score->percentage < 75)
+                    @if(!isset($score) || $score->percentage < 75)
                         <input type="submit" name="submit" value="Zatwierdź" class="btn btn-primary">
                     @else
                         <input type="button" class="btn btn-primary" onclick="location.href='/bootstrap/lesson2';" value="Następna lekcja" />
                     @endif
                 </div>
             </form>
-            @if($score->percentage > 75)
+            @if(isset($score) && $score->percentage > 75)
                 <div class="mt-5">
                     <h3>Wynik:</h3>
-                    <h4 class="green">{{$score->percentage}}%</h4>
+                    <h4 class="green" {{$score->percentage}} % </h4>
                 </div>
             @endif
         </div>
