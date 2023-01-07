@@ -20,11 +20,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg">
             <div class="container">
-                <a class="navbar-brand text-uppercase fw-bold" href="{{ url('/') }}">
-                    <h4>
-                    {{ config('app.name', 'Laravel') }}
-                    <img class="justify-content-center my-auto" style="width: 50px; height: 50px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />
-                    </h4>
+                <a class="navbar-brand text-uppercase h1" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                        <img class="justify-content-center my-auto" style="width: 50px; height: 50px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />
+
                 </a>
 
 

@@ -3,6 +3,11 @@
 @section('content')
     @vite(['resources/js/app.js', 'resources/js/delete.js'])
     <div class="container" >
+        <div class="row">
+            <div class="col-6">
+                <h1>Lista kursów</h1>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
