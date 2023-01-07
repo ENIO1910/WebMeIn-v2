@@ -82,7 +82,7 @@
                                         <div class="list list-inline">
                                             @foreach ($lessons as $lesson)
                                                 @if($course->id === $lesson->course_id)
-                                                <a href="#" class="link">
+                                                <a href="{{route('lessons.userView', $lesson->id)}}" class="link">
                                                     <div class="d-flex list-lessons p-3 my-3">
                                                     <span class="mr-auto"><i class="
                                                     fa-regular fa-circle-check"></i></span>

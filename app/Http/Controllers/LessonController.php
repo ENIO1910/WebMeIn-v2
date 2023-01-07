@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Scores;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Collection;
 
 class LessonController extends Controller
 {
@@ -64,5 +66,18 @@ class LessonController extends Controller
             ])->setStatusCode(500);
         }
 
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return View
+     */
+    public function userView(Lesson $lesson): View
+    {
+        return view("lessons.userView", [
+            'lesson' => $lesson,
+            'score' => Scores::where('lesson_id', $lesson->id)->first(),
+            'course' => Course::where('id', $lesson->course_id)->first()
+        ]);
     }
 }
