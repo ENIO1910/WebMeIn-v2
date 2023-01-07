@@ -11609,3 +11609,17 @@ html {
     border: 1px solid #888;
     background-color: #ddd;
 }
+
+.list-lessons{
+    background-color: #dddddd;
+    border-radius: 15px;
+}
+
+.list-lessons:hover {
+    background-color: #cdcdcd;
+}
+
+.link {
+    text-decoration: none;
+    color: #1abc9c;
+}

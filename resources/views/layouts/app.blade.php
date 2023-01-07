@@ -20,9 +20,14 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-uppercase fw-bold" href="{{ url('/') }}">
+                    <h4>
                     {{ config('app.name', 'Laravel') }}
+                    <img class="justify-content-center my-auto" style="width: 50px; height: 50px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />
+                    </h4>
                 </a>
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

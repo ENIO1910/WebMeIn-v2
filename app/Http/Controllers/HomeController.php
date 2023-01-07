@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Lesson;
+use App\Services\LessonService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,7 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'courses' => Course::paginate(10)
+            'courses' => Course::paginate(10),
+            'lessons' => Lesson::all()
         ]);
     }
 }

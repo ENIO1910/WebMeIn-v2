@@ -6,7 +6,7 @@
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image-->
             <img class="logo-color-granat" style="width: 350px; height: 350px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />            <!-- Masthead Heading-->
-            <h1 class="masthead-heading mb-0">{{ config('app.name', 'Laravel') }}</h1>
+            <h1 class="masthead-heading mb-0 text-uppercase">{{ config('app.name', 'Laravel') }}</h1>
             <h3 class="bg-primary slogan text-secondary mb-10">Code With Us</h3>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
@@ -34,7 +34,7 @@
                 <!-- Portfolio Item 1-->
                 @foreach($courses as $key => $course)
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#courseModal{{$course->id}}">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -47,57 +47,63 @@
             </div>
         </div>
         {{$courses->links()}}
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
-             aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Bootstrap - Lekcje-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Lekcje</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- % ukończenia kursu -->
-                                    <div style="width: 50%;" class="mx-auto">
-                                        <label><b>Stopień ukończenia kursu:</b></label>
-                                        <h3>%</h3>
-                                        <div class="meter animate">
-                                            <span style="width:100%"><span></span></span>
+        @foreach($courses as $key => $course)
+
+            <div class="portfolio-modal modal fade" id="courseModal{{$course->id}}" tabindex="-1" aria-labelledby="#courseModal{{$course->id}}"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center pb-5">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <!-- Bootstrap - Lekcje-->
+                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Lekcje</h2>
+                                        <!-- Icon Divider-->
+                                        <div class="divider-custom">
+                                            <div class="divider-custom-line"></div>
+                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                            <div class="divider-custom-line"></div>
                                         </div>
-                                        <!-- DODAĆ VALUE ODPOWIEDNIE [(WYNIK ZALICZONYCH / LESSONS) * 100%]   -->
-                                    </div>
+                                        <!-- % ukończenia kursu -->
+                                        <div style="width: 50%;" class="mx-auto">
+                                            <label><b>Stopień ukończenia kursu:</b></label>
+                                            <h3>%</h3>
+                                            <div class="meter animate">
+                                                <span style="width:100%"><span></span></span>
+                                            </div>
+                                            <!-- DODAĆ VALUE ODPOWIEDNIE [(WYNIK ZALICZONYCH / LESSONS) * 100%]   -->
+                                        </div>
 
-                                    <!-- Kurs - LEKCJE-->
-
-                                    <div class="list list-inline">
-                                            <a href="#" class="link">
-                                                <div class="d-flex list-lessons p-3 my-3">
-                                                <span class="mr-auto"><i class="
-                                                fa-regular "></i></span>
-                                                    <div class="mx-auto my-auto h6">name</div>
-                                                </div>
-                                            </a>
+                                        <!-- Kurs - LEKCJE-->
+                                        <div class="list list-inline">
+                                            @foreach ($lessons as $lesson)
+                                                @if($course->id === $lesson->course_id)
+                                                <a href="#" class="link">
+                                                    <div class="d-flex list-lessons p-3 my-3">
+                                                    <span class="mr-auto"><i class="
+                                                    fa-regular fa-circle-check"></i></span>
+                                                        <div class="mx-auto my-auto h6">{{$lesson->name}}</div>
+                                                    </div>
+                                                </a>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <button class="btn btn-primary my-3" data-bs-dismiss="modal">
+                                            <i class="fas fa-xmark fa-fw"></i>
+                                            <span>Zamknij</span>
+                                        </button>
                                     </div>
-                                    <button class="btn btn-primary my-3" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        <span>Zamknij</span>
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </section>
     <!-- About Section-->
     <section class="page-section bg-primary text-white mb-0 shadow-lg" id="about">
