@@ -194,7 +194,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /*
+         *  Provider ViewerJS
+         */
+        Davcpas1234\LaravelPdfViewer\LaravelPdfViewerServiceProvider::class,
     ],
 
     /*

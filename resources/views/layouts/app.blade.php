@@ -84,9 +84,9 @@
             </div>
         </nav>
 
-        <main class="pt-4">
+        <main >
             @yield('content')
-        </main>
+        </main >
     </div>
     <!-- Scripts -->
     <script text="text/javascript">

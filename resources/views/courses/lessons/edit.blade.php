@@ -5,18 +5,16 @@
     <div class="row justify-content-center pt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add Lesson') }}</div>
+                <div class="card-header">{{ __('Edit Lesson') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('courses.lessons.store')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('courses.update', $lesson->id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
-
-                            <input id="course_id" type="number" name="course_id" style="display:none" value="{{$course->id}}">
 
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="number" type="number" min="1" step="1" class="form-control @error('number') is-invalid @enderror" name="number" value="{{ old('name') }}" required autofocus>
+                                <input id="number" type="number" min="1" step="1" class="form-control @error('number') is-invalid @enderror" name="number" value="{{ $lesson->number }}" required autofocus>
 
                                 @error('number')
                                 <span class="invalid-feedback" role="alert">
@@ -30,7 +28,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $lesson->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +42,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="Opis czego dotyczy kurs" required autocomplete="email"></textarea>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="Opis czego dotyczy kurs" required autocomplete="email">{{ $lesson->description }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">

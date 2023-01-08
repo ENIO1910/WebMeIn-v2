@@ -39,12 +39,26 @@ class LessonController extends Controller
     {
         $lesson = new Lesson($request->all());
         $lesson->file_path = $request->file('files');
+        $lesson->pdf_file_path = $request->file('pdf');
         $lesson->save();
         $lesson->file_path->store("courses/lessons_".$lesson->id."/files");
+        $lesson->file_path->store("courses/lessons_".$lesson->id."/pdf");
 
         return redirect(route('courses.index'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Lesson $lesson
+     * @return View
+     */
+    public function edit(Lesson $lesson): View
+    {
+        return view("courses.lessons.edit", [
+            'lesson' => $lesson
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.

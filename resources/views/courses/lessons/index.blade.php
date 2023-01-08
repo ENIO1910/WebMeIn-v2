@@ -3,7 +3,7 @@
 @section('content')
     @vite(['resources/js/app.js', 'resources/js/delete.js'])
     <div class="container" >
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-6">
                 <h1>Lekcje</h1>
                 <h3>{{$course->name}}</h3>
@@ -22,6 +22,7 @@
                 <th scope="col">{{__('Name')}}</th>
                 <th scope="col">{{__('Description')}}</th>
                 <th scope="col">{{__('Files')}}</th>
+                <th scope="col">{{__('PDF')}}</th>
                 <th scope="col">{{__('Actions')}}</th>
             </tr>
             </thead>
@@ -34,12 +35,13 @@
                     <td class="text-center">{{$lesson->name}}</td>
                     <td class="text-center">{{$lesson->description}}</td>
                     <td class="text-center"> <i class="fa-solid fa-file-arrow-down"></i> </td>
+                    <td class="text-center"> {{$lesson->pdf_file_path}} </td>
                     <td class="text-center">
                         <button class="btn btn-danger btn-sm delete" data-id="{{$lesson->id}}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
 
-                        <a class="text-decoration-none" href="{{route('courses.edit', $lesson->id)}}">
+                        <a class="text-decoration-none" href="{{route('courses.lessons.edit', $lesson->id)}}">
                             <button title="Edycja" class="btn btn-primary btn-sm edit addMore" >
                                 <i class="fa-solid fa-edit"></i>
                             </button>

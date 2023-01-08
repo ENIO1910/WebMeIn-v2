@@ -3,7 +3,7 @@
 @section('content')
     @vite(['resources/js/app.js', 'resources/js/delete.js'])
     <div class="container" >
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-6">
                 <h1>Lista kursów</h1>
             </div>

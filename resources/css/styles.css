@@ -11622,3 +11622,8 @@ html {
     text-decoration: none;
     color: #1abc9c;
 }
+
+.vl {
+    border-left: 6px solid #1abc9c;
+    height: 100%;
+}
