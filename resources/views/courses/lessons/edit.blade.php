@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Lesson') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('courses.update', $lesson->id)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('courses.lessons.update', $lesson->id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
 

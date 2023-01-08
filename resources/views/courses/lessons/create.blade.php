@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Add Lesson') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('courses.lessons.store')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('courses.lessons.store', $course->id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
 

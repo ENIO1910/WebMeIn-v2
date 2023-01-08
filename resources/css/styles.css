@@ -11627,3 +11627,11 @@ html {
     border-left: 6px solid #1abc9c;
     height: 100%;
 }
+
+.pdf-block {
+    width: 50%;
+    resize: horizontal;
+    overflow-y: hidden;
+
+}
+

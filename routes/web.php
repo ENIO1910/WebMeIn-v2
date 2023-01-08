@@ -42,9 +42,10 @@ Route::post('/courses/{course}', [\App\Http\Controllers\CourseController::class,
  */
 Route::get('/courses/lessons/index/{course}', [\App\Http\Controllers\LessonController::class, 'index'])->name('courses.lessons.index')->middleware('auth');
 Route::get('/courses/lessons/{course}/create', [\App\Http\Controllers\LessonController::class, 'create'])->name('courses.lessons.create')->middleware('auth');
-Route::post('/lessons', [\App\Http\Controllers\LessonController::class, 'store'])->name('courses.lessons.store')->middleware('auth');
+Route::post('/lessons/{course}', [\App\Http\Controllers\LessonController::class, 'store'])->name('courses.lessons.store')->middleware('auth');
 Route::delete('/lessons/{lesson}/delete', [\App\Http\Controllers\LessonController::class, 'destroy'])->middleware('auth');
 Route::get('/lessons/edit/{lesson}', [\App\Http\Controllers\LessonController::class, 'edit'])->name('courses.lessons.edit')->middleware('auth');
+Route::post('/lessons/update/{lesson}', [\App\Http\Controllers\LessonController::class, 'update'])->name('courses.lessons.update')->middleware('auth');
 
 /**
  * Lekcje USER

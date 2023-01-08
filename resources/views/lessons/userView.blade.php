@@ -23,9 +23,8 @@
     </div>
 
     <div class='d-flex' style='height:80vh;'>
-
             <div class="row-fluid pdf-block ">
-                <iframe src ="{{ asset('/laraview/#../storage/lesson_'.$lesson->id.'/pdf/') }}" width="100%" height="100%"></iframe>
+                <iframe src ="{{ asset('/laraview/#../storage/'.$lesson->pdf_file_path) }}" width="100%" height="100%"></iframe>
 
             </div>
             <div class="vl"></div>

@@ -35,14 +35,19 @@ class LessonController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, Course $course): RedirectResponse
     {
         $lesson = new Lesson($request->all());
-        $lesson->file_path = $request->file('files');
-        $lesson->pdf_file_path = $request->file('pdf');
+        if(!empty($request->file('files'))) {
+            $lesson->file_path = $request->file('files')->store("courses/lessons_" . $course->id . "/files");
+        }
+
+        if(!empty($request->file('pdf'))) {
+            $lesson->pdf_file_path = $request->file('pdf')->store("courses/lessons_" . $course->id . "/pdf");
+        }
+
         $lesson->save();
-        $lesson->file_path->store("courses/lessons_".$lesson->id."/files");
-        $lesson->file_path->store("courses/lessons_".$lesson->id."/pdf");
+
 
         return redirect(route('courses.index'));
     }
@@ -58,6 +63,29 @@ class LessonController extends Controller
         return view("courses.lessons.edit", [
             'lesson' => $lesson
         ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param Lesson $lesson
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Lesson $lesson): RedirectResponse
+    {
+        $lesson->fill($request->all());
+
+        if(!empty($request->file('files'))) {
+            $lesson->file_path = $request->file('files')->store("courses/lessons_".$lesson->course_id."/files");
+        }
+
+        if(!empty($request->file('pdf'))) {
+            $lesson->pdf_file_path = $request->file('pdf')->store("courses/lessons_".$lesson->course_id."/pdf");
+        }
+
+        $lesson->save();
+
+        return redirect(route('courses.index'));
     }
 
     /**

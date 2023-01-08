@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('number',100);
             $table->string('name',500);
             $table->string('description',1500);
-            $table->string('file_path', 300);
+            $table->string('file_path', 300)->nullable();
             $table->unsignedBigInteger('course_id')->nullable();
             $table->timestamps();
             $table->foreign('course_id')->references('id')->on('courses');

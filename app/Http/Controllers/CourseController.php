@@ -91,6 +91,9 @@ class CourseController extends Controller
     {
         $course->fill($request->all());
         $course->category_id = $request->category;
+        if(!empty($request->file('image'))) {
+            $course->image_path = $request->file('image')->store('courses');
+        }
         $course->save();
         return redirect(route('courses.index'));
     }
