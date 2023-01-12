@@ -28,7 +28,6 @@
             </thead>
             <tbody>
             @foreach($lessons as $lesson)
-                @if($lesson->course_id === $course->id)
                 <tr style="vertical-align: middle">
                     <th class="text-center" scope="row">{{$lesson->number}}</th>
                     <td class="text-center">{{$lesson->id}}</th>
@@ -48,7 +47,6 @@
                         </a>
                     </td>
                 </tr>
-                @endif
             @endforeach
             </tbody>
         </table>

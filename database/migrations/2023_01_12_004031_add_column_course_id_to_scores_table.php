@@ -13,18 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
-            $table->id();
-            $table->integer('number');
-            $table->string('name',500);
-            $table->string('description',1500);
-            $table->string('file_path', 300)->nullable();
-            $table->unsignedBigInteger('course_id')->nullable();
-            $table->timestamps();
+        Schema::table('scores', function (Blueprint $table) {
+            $table->unsignedBigInteger('course_id')->nullable()->after('lesson_id');
             $table->foreign('course_id')->references('id')->on('courses');
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -33,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::table('scores', function (Blueprint $table) {
+            $table->dropForeign('scores_course_id_foreign');
+            $table->dropColumn('course_id');
+        });
     }
 };

@@ -5,7 +5,7 @@
     <div class="container" >
         <div class="row pt-5">
             <div class="col-6">
-                <h1>Lista kursów</h1>
+                <h1>Lista użytkowników</h1>
             </div>
         </div>
         <table class="table table-striped">

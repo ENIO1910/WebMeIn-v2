@@ -19,6 +19,7 @@ class Lesson extends Model
         'name',
         'description',
         'file_path',
+        'pdf_file_path',
         'course_id',
     ];
 }

@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Scores;
+use App\Models\User;
+use App\Services\CourseService;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +22,7 @@ class LessonController extends Controller
     {
         return view("courses.lessons.index", [
             'course' => $course,
-            'lessons' => Lesson::paginate(5),
+            'lessons' => Lesson::where('course_id', $course->id)->orderBy('number', 'asc')->paginate(5)
         ]);
     }
 
@@ -48,6 +52,16 @@ class LessonController extends Controller
 
         $lesson->save();
 
+        $users = User::pluck('id');
+        foreach ($users as $user) {
+            $score = new Scores;
+            $score->lesson_id = $lesson->id;
+            $score->user_id = $user;
+            $score->course_id = $course->id;
+            $score->percentage = 0;
+            $score->save();
+        }
+
 
         return redirect(route('courses.index'));
     }
@@ -74,15 +88,12 @@ class LessonController extends Controller
     public function update(Request $request, Lesson $lesson): RedirectResponse
     {
         $lesson->fill($request->all());
-
         if(!empty($request->file('files'))) {
             $lesson->file_path = $request->file('files')->store("courses/lessons_".$lesson->course_id."/files");
         }
-
         if(!empty($request->file('pdf'))) {
             $lesson->pdf_file_path = $request->file('pdf')->store("courses/lessons_".$lesson->course_id."/pdf");
         }
-
         $lesson->save();
 
         return redirect(route('courses.index'));
@@ -97,6 +108,7 @@ class LessonController extends Controller
     public function destroy(Lesson $lesson): JsonResponse
     {
         try{
+            Scores::where('lesson_id', $lesson->id)->delete();
             $lesson->delete();
             return response()->json([
                 'status' => 'success'
@@ -116,10 +128,32 @@ class LessonController extends Controller
      */
     public function userView(Lesson $lesson): View
     {
+
         return view("lessons.userView", [
+            'user' => Auth::user(),
             'lesson' => $lesson,
-            'score' => Scores::where('lesson_id', $lesson->id)->first(),
-            'course' => Course::where('id', $lesson->course_id)->first()
+            'score' => Scores::where('lesson_id', $lesson->id)->where('user_id', '=', Auth::user()->id)->first(),
+            'course' => Course::where('id', $lesson->course_id)->first(),
         ]);
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadFile(Lesson $lesson)
+    {
+        if (empty($lesson->pdf_file_path)) {
+            return redirect()->back();
+        }
+
+        $lesson = Lesson::where('id', $lesson->id)->first();
+        return Response::download('storage/'.$lesson->file_path);
+    }
+
+    public function updateScore(Request $request, $lesson_id, $withoutScore = false)
+    {
+        CourseService::updateScores($request, $lesson_id, $withoutScore);
+        return redirect()->back();
     }
 }

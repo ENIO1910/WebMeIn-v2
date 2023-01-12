@@ -46,12 +46,12 @@ Route::post('/lessons/{course}', [\App\Http\Controllers\LessonController::class,
 Route::delete('/lessons/{lesson}/delete', [\App\Http\Controllers\LessonController::class, 'destroy'])->middleware('auth');
 Route::get('/lessons/edit/{lesson}', [\App\Http\Controllers\LessonController::class, 'edit'])->name('courses.lessons.edit')->middleware('auth');
 Route::post('/lessons/update/{lesson}', [\App\Http\Controllers\LessonController::class, 'update'])->name('courses.lessons.update')->middleware('auth');
-
 /**
  * Lekcje USER
  */
 Route::get('/lesson/{lesson}', [\App\Http\Controllers\LessonController::class, 'userView'])->name('lessons.userView')->middleware('auth');
-
+Route::get('/lesson/downloadFiles/{lesson}', [\App\Http\Controllers\LessonController::class, 'downloadFile'])->name('downloadFile')->middleware('auth');
+Route::post('/lesson/{lesson}', [\App\Http\Controllers\LessonController::class, 'updateScore'])->name('updateScore')->middleware('auth');
 /**
  * Home
  */

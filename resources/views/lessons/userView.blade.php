@@ -21,7 +21,6 @@
             </div>
         </header>
     </div>
-
     <div class='d-flex' style='height:80vh;'>
             <div class="row-fluid pdf-block ">
                 <iframe src ="{{ asset('/laraview/#../storage/'.$lesson->pdf_file_path) }}" width="100%" height="100%"></iframe>
@@ -31,23 +30,22 @@
             <div class="row-fluid w-50 text-center mt-5">
                 <h3> Wykonaj instrukcję</h3>
                 <h5 class="mt-5">Tutaj znajdziesz potrzebne pliki do wykonania zadania: </h5>
-                <a href="#" <input type="button" class="btn btn-primary"/> Pliki </a>
-                <h5 class="mt-5">Jeśli wykonasz wszystkie kroki w instrukcji przejdź dalej</h5>
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <a href="{{route('downloadFile', $lesson)}}" <input type="button" class="btn btn-primary"/> Pliki </a>
+                <form action="{{ route('updateScore', $lesson->id) }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="withoutScore" value="true">
+                    <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                     <div>
-                        @if(!isset($score) || $score->percentage < 75)
+                        @if(!isset($score) || $score->percentage < 0.75)
+                            <h5 class="mt-5">Jeśli wykonasz wszystkie kroki w instrukcji przejdź dalej</h5>
                             <input type="submit" name="submit" value="Zatwierdź" class="btn btn-primary">
-                        @else
-                            <input type="button" class="btn btn-primary" onclick="location.href='/bootstrap/lesson2';" value="Następna lekcja" />
                         @endif
                     </div>
                 </form>
-                @if(isset($score) && $score->percentage > 75)
+                @if(isset($score) && $score->percentage > 0.75)
                     <div class="mt-5">
                         <h3>Wynik:</h3>
-                        <h4 class="green" {{$score->percentage}} % </h4>
+                        <h4 class="text-green"> {{$score->percentage * 100}}% </h4>
                     </div>
                 @endif
             </div>
