@@ -43,7 +43,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('name') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="name" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="name" autofocus>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('School') }}</label>
 
                             <div class="col-md-6">
-                                <input id="school" type="text" class="form-control @error('name') is-invalid @enderror" name="school" value="{{ $user->school }}" required autocomplete="name" autofocus>
+                                <input id="school" type="text" class="form-control @error('school') is-invalid @enderror" name="school" value="{{ $user->school }}" required autocomplete="name" autofocus>
 
                                 @error('school')
                                 <span class="invalid-feedback" role="alert">

@@ -75,6 +75,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:8'
+        ]);
+
         $user->fill($request->all());
         $user->save();
         return redirect(route('users.index'));
