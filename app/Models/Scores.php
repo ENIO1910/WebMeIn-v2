@@ -19,6 +19,11 @@ class Scores extends Model
       'percentage',
     ];
 
+    /**
+     * Funkcja zwracająca procent ukończonych lekcji ze względu na kurs
+     *
+     * @return mixed
+     */
     public static function percentageOver75ByCourse()
     {
         return Scores::selectRaw('course_id,

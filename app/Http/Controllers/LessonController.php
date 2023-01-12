@@ -41,7 +41,17 @@ class LessonController extends Controller
      */
     public function store(Request $request, Course $course): RedirectResponse
     {
-        $lesson = new Lesson($request->all());
+
+        $validated = $request->validate([
+            'number' => 'required|integer',
+            'name' => 'required|max:500',
+            'description' => 'required|max:1500',
+            'files' => 'nullable|mimes:zip,rar',
+            'pdf' => 'nullable|mimes:pdf',
+            'course_id' => 'required'
+        ]);
+
+        $lesson = new Lesson($validated);
         if(!empty($request->file('files'))) {
             $lesson->file_path = $request->file('files')->store("courses/lessons_" . $course->id . "/files");
         }
@@ -87,7 +97,16 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson): RedirectResponse
     {
-        $lesson->fill($request->all());
+
+        $validated = $request->validate([
+            'number' => 'required|integer',
+            'name' => 'required|max:500',
+            'description' => 'required|max:1500',
+            'files' => 'nullable|mimes:zip,rar',
+            'pdf' => 'nullable|mimes:pdf',
+        ]);
+
+        $lesson->fill($validated);
         if(!empty($request->file('files'))) {
             $lesson->file_path = $request->file('files')->store("courses/lessons_".$lesson->course_id."/files");
         }

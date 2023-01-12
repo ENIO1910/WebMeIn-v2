@@ -59,7 +59,13 @@
                             <label for="files" class="col-md-4 col-form-label text-md-end">{{ __('Files') }}</label>
 
                             <div class="col-md-6">
-                                <input id="files" type="file" class="form-control" name="files" >
+                                <input id="files" type="file" class="form-control @error('files') is-invalid @enderror" name="files" >
+
+                                @error('files')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -67,9 +73,16 @@
                             <label for="pdf" class="col-md-4 col-form-label text-md-end">{{ __('Pdf_Files') }}</label>
 
                             <div class="col-md-6">
-                                <input id="pdf" type="file" class="form-control" name="pdf" >
+                                <input id="pdf" type="file" class="form-control  @error('pdf') is-invalid @enderror" name="pdf" >
+
+                                @error('pdf')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

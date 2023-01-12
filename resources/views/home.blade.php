@@ -164,7 +164,7 @@
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">About Author</h4>
                     <p class="lead mb-0">
-                        WebMeIn was created in order to develop competences by students of secondary schools, and above all of technical schools.
+                        My name is Patryk Staniewski and I am a student at the Lublin University of Technology. I am a technology and programming enthusiast. My passion for programming is an inspiration for me to constantly develop and improve my skills. In my projects, I use tools such as PHP, Laravel, and Bootstrap, which allows me to create modern and aesthetic websites. I am constantly striving to improve my skills in HTML, CSS and JavaScript to be able to create even better projects in the future.
                     </p>
                 </div>
             </div>

@@ -55,16 +55,16 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} {{ Auth::user()->surname}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item py-3" href="{{ route('users.index') }}">
-                                        <i class="fa-solid fa-user"></i> Users
+                                        <i class="fa-solid fa-user"></i> {{__('Users')}}
                                     </a>
                                     <a class="dropdown-item py-3" href="{{ route('courses.index') }}">
-                                        <i class="fa-solid fa-table-list"></i> Courses
+                                        <i class="fa-solid fa-table-list"></i> {{__('Courses')}}
                                     </a>
 
                                     <a class="dropdown-item py-3" href="{{ route('logout') }}"

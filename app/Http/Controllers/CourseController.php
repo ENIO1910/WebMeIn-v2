@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Scores;
 use App\Services\CourseService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -49,7 +51,14 @@ class CourseController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $course = new Course($request->all());
+        $validated = $request->validate([
+            'name' => 'required|max:500',
+            'category' => 'required',
+            'description' => 'required|max:1500',
+            'difficulty' => 'required|integer|between:0,100'
+        ]);
+
+        $course = new Course($validated);
         $course->category_id = $request->category;
         $course->image_path = $request->file('image')->store('courses');
         $course->save();
@@ -89,7 +98,15 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course): RedirectResponse
     {
-        $course->fill($request->all());
+
+        $validated = $request->validate([
+            'name' => 'required|max:500',
+            'category' => 'required',
+            'description' => 'required|max:1500',
+            'difficulty' => 'required|integer|between:0,100'
+        ]);
+
+        $course->fill($validated);
         $course->category_id = $request->category;
         if(!empty($request->file('image'))) {
             $course->image_path = $request->file('image')->store('courses');
@@ -107,6 +124,8 @@ class CourseController extends Controller
     public function destroy(Course $course): JsonResponse
     {
         try{
+            Scores::where('course_id', $course->id)->delete();
+            Lesson::where('course_id', $course->id)->delete();
             $course->delete();
             return response()->json([
                 'status' => 'success'

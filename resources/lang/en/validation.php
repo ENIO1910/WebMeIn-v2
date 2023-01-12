@@ -22,7 +22,6 @@ return [
     'alpha_dash' => 'The :attribute must only contain letters, numbers, dashes and underscores.',
     'alpha_num' => 'The :attribute must only contain letters and numbers.',
     'array' => 'The :attribute must be an array.',
-    'ascii' => 'The :attribute must only contain single-byte alphanumeric characters and symbols.',
     'before' => 'The :attribute must be a date before :date.',
     'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
     'between' => [
@@ -65,7 +64,6 @@ return [
         'string' => 'The :attribute must be greater than or equal to :value characters.',
     ],
     'image' => 'The :attribute must be an image.',
-    'pdf' => 'The :attribute must be an pdf.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
@@ -143,7 +141,6 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute must be uppercase.',
     'url' => 'The :attribute must be a valid URL.',
-    'ulid' => 'The :attribute must be a valid ULID.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*
