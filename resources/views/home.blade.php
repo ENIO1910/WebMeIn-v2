@@ -71,17 +71,27 @@
                                         <!-- % ukończenia kursu -->
                                         <div style="width: 50%;" class="mx-auto">
                                             <label><b>Stopień ukończenia kursu:</b></label>
-                                            @foreach($percentages as $percentage)
-                                                @if($course->id === $percentage->course_id)
-                                            <h3>
-                                                    {{$percentage->percentage_over_75}}%
+                                            @if(count($percentages) === 0)
+                                                <h3>
+                                                    0%
 
-                                            </h3>
-                                            <div class="meter animate">
-                                                <span style="width:{{$percentage->percentage_over_75}}%"><span></span></span>
-                                            </div>
-                                                @endif
-                                            @endforeach
+                                                </h3>
+                                                <div class="meter animate">
+                                                    <span style="width:0%"><span></span></span>
+                                                </div>
+                                            @else
+                                                @foreach($percentages as $percentage)
+                                                    @if($course->id === $percentage->course_id)
+                                                <h3>
+                                                        {{$percentage->percentage_over_75}}%
+
+                                                </h3>
+                                                <div class="meter animate">
+                                                    <span style="width:{{$percentage->percentage_over_75}}%"><span></span></span>
+                                                </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                             <!-- DODAĆ VALUE ODPOWIEDNIE [(WYNIK ZALICZONYCH / LESSONS) * 100%]   -->
                                         </div>
                                         <!-- Kurs - LEKCJE-->

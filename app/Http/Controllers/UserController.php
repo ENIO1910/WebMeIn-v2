@@ -80,10 +80,10 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'password' => 'required|min:8'
+            'school' => 'required|min:8'
         ]);
 
-        $user->fill($request->all());
+        $user->fill($validated);
         $user->save();
         return redirect(route('users.index'));
     }

@@ -9,6 +9,7 @@ use App\Services\CourseService;
 use App\Services\LessonService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\Paginator;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,8 @@ class HomeController extends Controller
     {
         $this->middleware(['auth', 'verified']);
     }
+
+
 
     /**
      * Show the application dashboard.
@@ -38,5 +41,8 @@ class HomeController extends Controller
             'percentages' => $courses_percentages
         ]);
     }
+
+
+
 
 }
