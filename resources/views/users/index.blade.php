@@ -17,7 +17,6 @@
                 <th scope="col">{{__('Surname')}}</th>
                 <th scope="col">{{__('Email')}}</th>
                 <th scope="col">{{__('School')}}</th>
-                <th scope="col">{{__('Role')}}</th>
                 <th scope="col">{{__('Actions')}}</th>
             </tr>
             </thead>
@@ -30,7 +29,6 @@
                     <td>{{$user->surname}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->school}}</td>
-                    <td>ADMIN</td>
                     <td>
                         <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">
                             <i class="fa-solid fa-trash"></i>

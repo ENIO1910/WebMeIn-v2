@@ -4,8 +4,8 @@
     @vite(['resources/css/styles.css'])
     <header class="masthead bg-primary text-white text-center remove-margin shadow-lg">
         <div class="container d-flex align-items-center flex-column">
-            <!-- Masthead Avatar Image-->
-            <img class="logo-color-granat" style="width: 350px; height: 350px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />            <!-- Masthead Heading-->
+            <!-- LOGO Image-->
+            <img class="logo-color-granat" style="width: 350px; height: 350px;"  src="{{asset('assets/img/LOGO.svg')}}" alt="LOGO" />
             <h1 class="masthead-heading mb-0 text-uppercase">{{ config('app.name', 'Laravel') }}</h1>
             <h3 class="bg-primary slogan text-secondary mb-10">Code With Us</h3>
             <!-- Icon Divider-->
@@ -14,11 +14,11 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Masthead Subheading-->
+            <!-- LOGO Subheading-->
             <p class="masthead-subheading font-weight-light mb-0">FRAMEWORKS - TECHNOLOGY - KNOWLAGE</p>
         </div>
     </header>
-    <!-- Portfolio Section-->
+    <!-- COURSES Section-->
     <section class="page-section portfolio shadow-lg" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
@@ -29,9 +29,9 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Portfolio Grid Items-->
+            <!-- COURSES Grid Items-->
             <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
+                <!-- COURSES ITEMS -->
                 @foreach($courses as $key => $course)
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#courseModal{{$course->id}}">

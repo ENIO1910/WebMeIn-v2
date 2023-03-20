@@ -162,7 +162,7 @@ class LessonController extends Controller
      */
     public function downloadFile(Lesson $lesson)
     {
-        if (empty($lesson->pdf_file_path)) {
+        if (empty($lesson->file_path)) {
             return redirect()->back();
         }
 

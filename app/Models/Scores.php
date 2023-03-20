@@ -17,7 +17,7 @@ class Scores extends Model
      */
     protected $fillable = [
         'lesson_id',
-      'percentage',
+        'percentage',
     ];
 
     /**

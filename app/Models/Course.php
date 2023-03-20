@@ -21,7 +21,4 @@ class Course extends Model
         'difficulty',
         'image_path',
     ];
-
-
-
 }
